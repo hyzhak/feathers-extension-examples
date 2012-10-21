@@ -4,8 +4,11 @@ package org.hyzhak.starling.example
 	import feathers.controls.Slider;
 	import feathers.core.FeathersControl;
 	
+	import org.hyzhak.starling.display.KnobControl;
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
+	
+	import starling.events.Event;
 	
 	public class NumberControl extends FeathersControl
 	{
@@ -21,7 +24,9 @@ package org.hyzhak.starling.example
 		
 		private var _sliderControl : Slider;
 		
-		private var _gap : int = 150;
+		private var _knob : KnobControl;
+		
+		private var _gap : int = 50;
 		
 		public function get label():String
 		{
@@ -98,6 +103,15 @@ package org.hyzhak.starling.example
 			_sliderControl = new Slider();
 			_sliderControl.onChange.add(onSliderChanged);
 			addChild(_sliderControl);
+			
+			_knob = new KnobControl();
+			_knob.addEventListener(Event.CHANGE, onChangeKnob);
+			addChild(_knob);
+		}
+		
+		private function onChangeKnob(event:Event):void
+		{
+			value = _knob.value;
 		}
 		
 		override public function validate():void
@@ -111,8 +125,13 @@ package org.hyzhak.starling.example
 			
 			_sliderControl.minimum = minimum;
 			_sliderControl.maximum = maximum;
-			
 			_sliderControl.value = value;
+			
+			//TODO : _knob
+			_knob.minimum = minimum;
+			_knob.maximum = maximum;
+			_knob.delta = maximum - minimum;
+			_knob.value = value;
 			
 			super.validate();
 		}	
@@ -132,6 +151,9 @@ package org.hyzhak.starling.example
 			var gap : int = Math.max(_gap, _labelControl.width);
 			_sliderControl.x = _labelControl.x + gap + 10;
 			_sliderControl.y = 0;
+			
+			_knob.x = _sliderControl.x + gap;
+			_knob.y = 0;
 		}
 	}
 }

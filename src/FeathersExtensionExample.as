@@ -11,7 +11,7 @@ package
 	import starling.utils.HAlign;
 	import starling.utils.VAlign;
 	
-	[SWF(frameRate="30", width="640", height="480", backgroundColor="#2f2f2f")]
+	[SWF(frameRate="60", width="640", height="480", backgroundColor="#2f2f2f")]
 	public class FeathersExtensionExample extends MovieClip
 	{
 		private var _starling:Starling;

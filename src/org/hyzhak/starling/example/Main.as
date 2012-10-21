@@ -5,6 +5,8 @@ package org.hyzhak.starling.example
 	import feathers.motion.transitions.ScreenSlidingStackTransitionManager;
 	import feathers.themes.MetalWorksMobileTheme;
 	
+	import org.hyzhak.starling.display.FeatherExtensionTheme;
+	
 	import starling.display.Sprite;
 	import starling.events.Event;
 	
@@ -13,6 +15,8 @@ package org.hyzhak.starling.example
 		private static const MAIN_MENU:String = "mainMenu";
 		
 		private var _theme:MetalWorksMobileTheme;
+		private var _extensionTheme:FeatherExtensionTheme;
+		
 		private var _navigator:ScreenNavigator;
 		
 		private var _transitionManager:ScreenSlidingStackTransitionManager;
@@ -25,6 +29,7 @@ package org.hyzhak.starling.example
 		private function addedToStageHandler(event:Event):void
 		{
 			_theme = new MetalWorksMobileTheme(stage);
+			_extensionTheme = new FeatherExtensionTheme(stage);
 			
 			_navigator = new ScreenNavigator();
 			addChild(_navigator);
