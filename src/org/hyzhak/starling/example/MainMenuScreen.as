@@ -42,14 +42,17 @@ package org.hyzhak.starling.example
 			var texture : starling.textures.Texture;
 			
 			_whiteNoiseImage = new WhiteNoiseImage(_whiteNoiseImageSize, _whiteNoiseImageSize);
+			_whiteNoiseImage.textureScale = 2.0;
 			addChild(_whiteNoiseImage);
 			
 			_perlinNoiseImage = new PerlinNoiseImage(_perlinNoiseImageSize, _perlinNoiseImageSize);
 			_perlinNoiseImage.alpha = 0.3;
+			_perlinNoiseImage.textureScale = 2.0;
 			addChild(_perlinNoiseImage);
 			
 			_zxSpectrumLinesImage = new ZXSpectrumLinesImage(_zxSpectrumImageSize, _zxSpectrumImageSize);
 			_zxSpectrumLinesImage.alpha = 0.3;
+			_zxSpectrumLinesImage.textureScale = 4.0;
 			addChild(_zxSpectrumLinesImage);
 			
 			addEventListener(Event.ENTER_FRAME, onEnterFrame);
@@ -66,7 +69,7 @@ package org.hyzhak.starling.example
 			
 			_zxSpectrumSizeControl = new NumberControl();
 			_zxSpectrumSizeControl.label = "zx size";
-			_zxSpectrumSizeControl.minimum = 1;
+			_zxSpectrumSizeControl.minimum = 8;
 			_zxSpectrumSizeControl.maximum = 512;
 			_zxSpectrumSizeControl.value = _zxSpectrumImageSize;
 			_zxSpectrumSizeControl.onChange.add(onZXSpectrumChangeSizeControl);
@@ -82,7 +85,7 @@ package org.hyzhak.starling.example
 			
 			_perlinNoiseSizeControl = new NumberControl();
 			_perlinNoiseSizeControl.label = "perlin size";
-			_perlinNoiseSizeControl.minimum = 1;
+			_perlinNoiseSizeControl.minimum = 8;
 			_perlinNoiseSizeControl.maximum = 512;
 			_perlinNoiseSizeControl.value = _perlinNoiseImageSize;
 			_perlinNoiseSizeControl.onChange.add(onPerlinNoiseChangeSizeControl);
@@ -90,7 +93,7 @@ package org.hyzhak.starling.example
 			
 			_whiteNoiseSizeControl = new NumberControl();
 			_whiteNoiseSizeControl.label = "white size";
-			_whiteNoiseSizeControl.minimum = 1;
+			_whiteNoiseSizeControl.minimum = 8;
 			_whiteNoiseSizeControl.maximum = 512;
 			_whiteNoiseSizeControl.value = _whiteNoiseImageSize;
 			_whiteNoiseSizeControl.onChange.add(onWhiteNoiseChangeSizeControl);

@@ -102,6 +102,7 @@ package org.hyzhak.starling.example
 			
 			_sliderControl = new Slider();
 			_sliderControl.onChange.add(onSliderChanged);
+			_sliderControl.alpha = 0;
 			addChild(_sliderControl);
 			
 			_knob = new KnobControl();
@@ -152,8 +153,8 @@ package org.hyzhak.starling.example
 			_sliderControl.x = _labelControl.x + gap + 10;
 			_sliderControl.y = 0;
 			
-			_knob.x = _sliderControl.x + gap;
-			_knob.y = 0;
+			_knob.x = 0;// + _gap;
+			_knob.y = 20;
 		}
 	}
 }
