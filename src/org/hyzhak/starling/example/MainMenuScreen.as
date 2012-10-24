@@ -64,7 +64,7 @@ package org.hyzhak.starling.example
 			_zxSpectrumControl.minimum = 0;
 			_zxSpectrumControl.maximum = 1;
 			_zxSpectrumControl.value = _zxSpectrumLinesImage.alpha;
-			_zxSpectrumControl.onChange.add(onChangeSlider);
+			_zxSpectrumControl.addEventListener(Event.CHANGE, onChangeSlider);
 			addChild(_zxSpectrumControl);
 			
 			_zxSpectrumSizeControl = new NumberControl();
@@ -72,7 +72,7 @@ package org.hyzhak.starling.example
 			_zxSpectrumSizeControl.minimum = 8;
 			_zxSpectrumSizeControl.maximum = 512;
 			_zxSpectrumSizeControl.value = _zxSpectrumImageSize;
-			_zxSpectrumSizeControl.onChange.add(onZXSpectrumChangeSizeControl);
+			_zxSpectrumSizeControl.addEventListener(Event.CHANGE, onZXSpectrumChangeSizeControl);
 			addChild(_zxSpectrumSizeControl);
 			
 			_perlinNoiseControl = new NumberControl();
@@ -80,7 +80,7 @@ package org.hyzhak.starling.example
 			_perlinNoiseControl.minimum = 0;
 			_perlinNoiseControl.maximum = 1;
 			_perlinNoiseControl.value = _perlinNoiseImage.alpha;
-			_perlinNoiseControl.onChange.add(onChangePerlinNoiseAlpha);
+			_perlinNoiseControl.addEventListener(Event.CHANGE, onChangePerlinNoiseAlpha);
 			addChild(_perlinNoiseControl);
 			
 			_perlinNoiseSizeControl = new NumberControl();
@@ -88,7 +88,7 @@ package org.hyzhak.starling.example
 			_perlinNoiseSizeControl.minimum = 8;
 			_perlinNoiseSizeControl.maximum = 512;
 			_perlinNoiseSizeControl.value = _perlinNoiseImageSize;
-			_perlinNoiseSizeControl.onChange.add(onPerlinNoiseChangeSizeControl);
+			_perlinNoiseSizeControl.addEventListener(Event.CHANGE, onPerlinNoiseChangeSizeControl);
 			addChild(_perlinNoiseSizeControl);
 			
 			_whiteNoiseSizeControl = new NumberControl();
@@ -96,33 +96,8 @@ package org.hyzhak.starling.example
 			_whiteNoiseSizeControl.minimum = 8;
 			_whiteNoiseSizeControl.maximum = 512;
 			_whiteNoiseSizeControl.value = _whiteNoiseImageSize;
-			_whiteNoiseSizeControl.onChange.add(onWhiteNoiseChangeSizeControl);
+			_whiteNoiseSizeControl.addEventListener(Event.CHANGE, onWhiteNoiseChangeSizeControl);
 			addChild(_whiteNoiseSizeControl);
-		}
-		
-		private function onPerlinNoiseChangeSizeControl(control : NumberControl):void
-		{
-			_perlinNoiseImageSize = int(control.value);
-		}
-		
-		private function onWhiteNoiseChangeSizeControl(control : NumberControl):void
-		{
-			_whiteNoiseImageSize = int(control.value);
-		}
-		
-		private function onZXSpectrumChangeSizeControl(control : NumberControl):void
-		{
-			_zxSpectrumImageSize = int(control.value);
-		}
-		
-		private function onChangeSlider(control : NumberControl) : void
-		{
-			_zxSpectrumLinesImage.alpha = control.value;
-		}
-		
-		private function onChangePerlinNoiseAlpha(control : NumberControl):void
-		{
-			_perlinNoiseImage.alpha = control.value;
 		}
 		
 		override protected function draw():void
@@ -156,6 +131,31 @@ package org.hyzhak.starling.example
 			_zxSpectrumLinesImage.height = stage.stageHeight;
 		}
 		
+		private function onPerlinNoiseChangeSizeControl(event : Event):void
+		{
+			_perlinNoiseImageSize = int((event.target as NumberControl).value);
+		}
+		
+		private function onWhiteNoiseChangeSizeControl(event : Event):void
+		{
+			_whiteNoiseImageSize = int((event.target as NumberControl).value);
+		}
+		
+		private function onZXSpectrumChangeSizeControl(event : Event):void
+		{
+			_zxSpectrumImageSize = int((event.target as NumberControl).value);
+		}
+		
+		private function onChangeSlider(event : Event) : void
+		{
+			_zxSpectrumLinesImage.alpha = (event.target as NumberControl).value;
+		}
+		
+		private function onChangePerlinNoiseAlpha(event : Event):void
+		{
+			_perlinNoiseImage.alpha = (event.target as NumberControl).value;
+		}
+		
 		private function onEnterFrame(event : Event):void
 		{
 			_whiteNoiseImage.textureWidth = _whiteNoiseImageSize;
@@ -166,7 +166,7 @@ package org.hyzhak.starling.example
 			_perlinNoiseImage.textureHeight = _perlinNoiseImageSize;
 			_perlinNoiseImage.invalidateTexture();
 			
-			_zxSpectrumLinesImage.textureWidth = _zxSpectrumImageSize;
+			_zxSpectrumLinesImage.textureWidth = 1;
 			_zxSpectrumLinesImage.textureHeight = _zxSpectrumImageSize;
 			_zxSpectrumLinesImage.invalidateTexture();			
 		}

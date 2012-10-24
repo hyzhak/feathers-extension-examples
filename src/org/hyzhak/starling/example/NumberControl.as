@@ -5,8 +5,6 @@ package org.hyzhak.starling.example
 	import feathers.core.FeathersControl;
 	
 	import org.hyzhak.starling.display.KnobControl;
-	import org.osflash.signals.ISignal;
-	import org.osflash.signals.Signal;
 	
 	import starling.events.Event;
 	
@@ -56,7 +54,7 @@ package org.hyzhak.starling.example
 			}
 			
 			_value = value;
-			onChange.dispatch(this);
+			dispatchEventWith(Event.CHANGE);
 			invalidate(INVALIDATION_FLAG_DATA);
 		}
 
@@ -81,27 +79,14 @@ package org.hyzhak.starling.example
 			_minimum = value;
 			invalidate(INVALIDATION_FLAG_DATA);
 		}
-		
-		/**
-		 * @private
-		 */
-		private var _onChange:Signal = new Signal(NumberControl);
-		
-		/**
-		 * Dispatched when the <code>value</code> property changes.
-		 */
-		public function get onChange():ISignal
-		{
-			return _onChange;
-		}
-		
+				
 		override protected function initialize():void
 		{
 			_labelControl = new Label();
 			addChild(_labelControl);
 			
 			_sliderControl = new Slider();
-			_sliderControl.onChange.add(onSliderChanged);
+			_sliderControl.addEventListener(Event.CHANGE, onSliderChanged);
 			_sliderControl.alpha = 0;
 			addChild(_sliderControl);
 			
@@ -137,9 +122,9 @@ package org.hyzhak.starling.example
 			super.validate();
 		}	
 		
-		private function onSliderChanged(slider : Slider):void
+		private function onSliderChanged(event : Event):void
 		{
-			value = slider.value;
+			value = _sliderControl.value;
 		}
 		
 		override protected function draw():void
