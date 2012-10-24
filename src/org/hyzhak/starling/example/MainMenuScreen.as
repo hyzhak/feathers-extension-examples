@@ -166,7 +166,7 @@ package org.hyzhak.starling.example
 			_perlinNoiseImage.textureHeight = _perlinNoiseImageSize;
 			_perlinNoiseImage.invalidateTexture();
 			
-			_zxSpectrumLinesImage.textureWidth = 1;
+			_zxSpectrumLinesImage.textureWidth = _zxSpectrumImageSize;
 			_zxSpectrumLinesImage.textureHeight = _zxSpectrumImageSize;
 			_zxSpectrumLinesImage.invalidateTexture();			
 		}
